@@ -6,6 +6,10 @@
 
  iconfont '我的项目' 点击 '复制代码' 时, 复制完整标签
 
+ 演示:
+
+ ![iconfont-copy 演示](https://files.catbox.moe/mzvf4v.gif)
+
 ``` js
   //* 关联油猴插件
   // ==UserScript==
