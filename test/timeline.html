@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- S 方法支持以依赖 -->
+  <script src="https://www.jq22.com/js/jquery.min.js"></script>
+  <script src="/public/js/anime.js"></script>
+  <script src="/public/js/rem.js"></script>
+  <!-- E 方法支持以依赖 -->
+
+  <!-- S 页面依赖 -->
+  <script src="/assets/js/index.js"></script>
+
+  <link rel="stylesheet" href="/assets/index.min.css">
+  <!-- E 页面依赖 -->
+</head>
+
+<body>
+  <style>
+    .square {
+      width: .5rem;
+      height: .5rem;
+      background-color: aqua;
+    }
+
+    .circle {
+      width: .5rem;
+      height: .5rem;
+      border-radius: .5rem;
+      background-color: seagreen;
+    }
+  </style>
+  <div class="basic-timeline-demo">
+    <div class="el square"></div>
+    <div class="el circle"></div>
+  </div>
+
+  <script>
+    // 使用默认参数创建时间轴
+    var tl = anime.timeline({
+      easing: 'easeOutExpo',
+      duration: 750
+    });
+
+    // 增加子项
+    tl.add({
+        targets: '.basic-timeline-demo .el.square',
+        translateX: 250,
+      })
+      .add({
+        targets: '.basic-timeline-demo .el.circle',
+        translateX: 250,
+      });
+  </script>
+</body>
+
+</html>
