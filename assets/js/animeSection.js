@@ -1,3 +1,8 @@
+/*
+ * @description: index 页面动画播放流程
+ * @Author: duQings duqings@foxmail.com
+ * @Date: 2021年1月27日22:49:36
+ */
 function animePart_0() {
 
   /* //! S 第一部分
@@ -8,6 +13,8 @@ function animePart_0() {
     targets: 'section.part_0',
     opacity: 1,
   };
+
+  // anime(animeGather.section['section_part_0']['Body'])
 
   //* 第一部分 - 选择
   //* 入
@@ -59,10 +66,10 @@ function animePart_0() {
 
   /* //! E 第一部分
    ****************************************/
-  animeGather.section['section_part_0']['Body'] = {
+  /* animeGather.section['section_part_0']['Body'] = {
     targets: 'section.part_1',
     opacity: 1,
-  };
+  }; */
 
   /* //! S 第二部分
    ****************************************/
@@ -79,6 +86,7 @@ function animePart_0() {
       animeTimeline
         .add(animeGather.section['section_part_0']['Body']) //* 身体显
         .add(animeGather.section['section_part_0']['icon_choose_in'], '+=500');
+
       setTimeout(() => {
         animeTimeline.pause();
       }, 5000);

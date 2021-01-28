@@ -1,0 +1,23 @@
+{
+  "id": "2355055",
+  "name": "hzya-年总结素材",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3631695",
+      "name": "向左",
+      "font_class": "goLeft",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7188033",
+      "name": "向左",
+      "font_class": "arrow-l",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    }
+  ]
+}

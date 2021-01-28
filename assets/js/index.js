@@ -112,8 +112,6 @@ function animePlay(part, period) {
   } else {
     animeTimelineControl()[part][period]();
   }
-  
-
 }
 
 /**

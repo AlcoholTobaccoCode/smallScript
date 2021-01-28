@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/moon.ico" type="image/vnd.microsoft.icon">
+  <link rel="icon" href="/moon.ico" type="image/vnd.microsoft.icon">
+  <title>部门总结</title>
+  <!-- S 方法支持以依赖 -->
+  <script src="https://www.jq22.com/js/jquery.min.js"></script>
+  <script src="/public/js/anime.js"></script>
+  <script src="/public/js/rem.js"></script>
+  <script src="/public/js/echarts@/echarts.js"></script>
+  <link rel="stylesheet" href="/assets/css/iconfont/iconfont.css">
+  <!-- E 方法支持以依赖 -->
+
+  <!-- S 轮播图插件 -->
+  <link rel="stylesheet" href="/public/css/circle.css" />
+  <!-- E 轮播图插件 -->
+
+  <!-- S 页面依赖 -->
+  <script src="/assets/js/depSummary.js"></script>
+  <link rel="stylesheet" href="/assets/depSummary.min.css">
+  <script src="/views/departmentOfSummary/fire.js"></script>
+  <!-- / 火焰依赖 -->
+  <!-- E 页面依赖 -->
+</head>
+
+<body>
+
+  <div id="app">
+
+    <section class="part_0">
+      <div class="black-bg"></div>
+      <h2 class="old-year"></h2>
+      <span class="segmentation">-</span>
+      <h2 class="new-year"></h2>
+    </section>
+
+
+    <section class="part_1">
+
+      <!-- <div class="table-content" style="display: none;">
+        <table class="part_tables table-project">
+          <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>项目数</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>青山</td>
+            <td>2333</td>
+          </tr>
+        </table>
+      </div> -->
+
+      <!-- <div class="echarts-section echarts-section-this echarts-section_project zIndex2" data-order="1">
+        <div id="echarts_project" class="echarts-item echarts_project"></div>
+      </div> -->
+      <!-- / 项目 echarts -->
+
+      <!-- <div class="echarts-section echarts-section_overtimes zIndex1" data-order="2">
+        <div id="echarts_overtimes" class="echarts-item echarts_overtimes">echarts_overtimes</div>
+      </div> -->
+      <!-- / 加班时长 echarts -->
+
+      <!-- <div class="echarts-section echarts-section_xxx zIndex1" data-order="2">
+        <div id="echarts_xxx" class="echarts-item echarts_xxx">echarts_xxx</div>
+      </div> -->
+      <!-- / 加班时长 echarts -->
+
+      <!-- <div class="echarts-tools">
+        <i class="iconfont icon-arrow-l iconLeft"></i>
+        <i class="iconfont icon-goLeft iconRight"></i>
+      </div> -->
+
+
+      <div class="holderCircle">
+
+        <div class="dotCircle">
+          <span class="itemDot active itemDot1" data-tab="1">
+            <span class="forActive">项目</span>
+          </span>
+          <span class="itemDot itemDot2" data-tab="2">
+            <span class="forActive">加班时长</span>
+          </span>
+          <span class="itemDot itemDot3" data-tab="3">
+            <span class="forActive">项目</span>
+          </span>
+          <span class="itemDot itemDot4" data-tab="4">
+            <span class="forActive">加班时长</span>
+          </span>
+          <span class="itemDot itemDot5" data-tab="5">
+            <span class="forActive">项目</span>
+          </span>
+          <span class="itemDot itemDot6" data-tab="6">
+            <span class="forActive">加班时长</span>
+          </span>
+          <span class="itemDot itemDot7" data-tab="7">
+            <span class="forActive">项目</span>
+          </span>
+          <span class="itemDot itemDot8" data-tab="8">
+            <span class="forActive">加班时长</span>
+          </span>
+          <span class="itemDot itemDot9" data-tab="9">
+            <span class="forActive">项目</span>
+          </span>
+          <span class="itemDot itemDot10" data-tab="10">
+            <span class="forActive">加班时长</span>
+          </span>
+        </div>
+
+        <div class="contentCircle">
+
+          <div class="CirItem active CirItem1">
+            <div id="echarts_project" class="echarts-item echarts_project"></div>
+          </div>
+          <div class="CirItem CirItem2">
+            加班时长
+          </div>
+          <div class="CirItem CirItem3">
+            项目
+          </div>
+          <div class="CirItem CirItem4">
+            加班时长
+          </div>
+          <div class="CirItem CirItem5">
+            项目
+          </div>
+          <div class="CirItem CirItem6">
+            加班时长
+          </div>
+          <div class="CirItem CirItem7">
+            项目
+          </div>
+          <div class="CirItem CirItem8">
+            加班时长
+          </div>
+          <div class="CirItem CirItem9">
+            项目
+          </div>
+          <div class="CirItem CirItem10">
+            加班时长
+          </div>
+        </div>
+
+      </div>
+
+      <script src="/public/js/circle.js"></script>
+    </section>
+
+    <!-- S 额外部分 - 篝火展示 -->
+    <section class="part_extend_fire">
+      <div class="cf-container">
+        <div class="cf-flame-container" id="fireNodes1">
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+        </div>
+        <!-- / 最大的, 不怎么飘动的火 -->
+        <div class="cf-flame-container" id="fireNodes2">
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+        </div>
+        <!-- / 右侧亮色火苗 -->
+        <div class="cf-flame-container" id="base-fire">
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+          <div class="cf-flame"></div>
+        </div>
+        <!-- /顶层暗色三团火 -->
+        <div class="cf-log-container">
+          <div class="cf-log"></div>
+          <div class="cf-log"></div>
+        </div>
+        <!-- / 两根烧火棍 -->
+      </div>
+      <!-- / 篝火主体 -->
+    </section>
+    <!-- E 额外部分 - 篝火展示 -->
+
+  </div>
+
+</body>
+
+</html>
