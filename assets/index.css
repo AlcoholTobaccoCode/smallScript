@@ -23,6 +23,22 @@ section {
   min-width: 100%;
   min-height: 100%;
   opacity: 0;
+}
+
+/* 幕布 */
+.bg {
+  z-index: -1;
+  position: relative;
+  opacity: 1;
+}
+
+/* 白色幕布 */
+.bg-light {
+  background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+}
+
+/* 黑色幕布 */
+.bg-dark {
   background-color: #363b40;
 }
 
@@ -154,6 +170,7 @@ section {
 
 .follow-friend {
   position: absolute;
+  left: -3rem;
 }
 
 .follow-friend .icon-choose-btn {
@@ -173,7 +190,13 @@ section {
   position: absolute;
   right: -25rem;
   top: 1rem;
-  transform: scale(0.5);
+}
+
+.icon-bird {
+  position: absolute;
+  right: -3rem;
+  top: 1rem;
+  transform: scale(0.1) rotateY(180deg);
 }
 
 .language {
@@ -183,3 +206,17 @@ section {
 
 /* E 顺序模块
 ***********************************/
+.extend-sun {
+  position: absolute;
+  top: 20rem;
+  right: 0;
+  transform: rotateY(180deg);
+  width: 2rem;
+  opacity: 0;
+}
+
+.extend-sun .sun-cheek-red,
+.extend-sun .extend-sun-mouth,
+.extend-sun .extend-sun-eye {
+  opacity: 0;
+}

@@ -16,6 +16,7 @@ var globalClient = {}, //* 全局窗口尺寸存储
     easing: 'easeInOutQuad',
     duration: 2000
   }), //* 创建动画时间轴
+  // remDynamic = {},
   jumpRabbitKeyframes = {
     translateY: [{
         value: 10,
@@ -67,6 +68,12 @@ function initCommonVariate() {
   globalClient['x'] = $('body').width();
   globalClient['y'] = $('body').height();
 
+
+  /* remDynamic = {
+    w: (parseFloat($('html').css('font-size')) / 100),
+    h: (parseFloat($('html').css('font-size')) / 100),
+  } */
+
   //* 各部分盒子高度始终等于窗口高度
   $('section').css({
     'height': globalClient.y,
@@ -78,10 +85,15 @@ function initCommonVariate() {
     'width': globalClient.x,
   });
   //* 已选伴友
-  $('.follow-friend').css({
+  /* $('.follow-friend').css({
     'left': -globalClient.x,
+  }); */
+  
+  //* 背景变化
+  $('.bg').css({
+    'height': globalClient.y + 60, //* 幕布始终大于窗口大小
+    'width': globalClient.x + 60, //* 幕布始终大于窗口大小
   });
-
 }
 
 /**
@@ -95,8 +107,14 @@ function initAnime() {
     duration: 2000
   }); */
 
+  //* 开始时拉起幕布
+  $('.bg-dark').css({
+    'top': -globalClient.x - 66
+  });
+
   animeGather['section'] = {}; //* 创建主体存储变量
   animeGather['chooseFriend'] = {}; //* 创建伴友离场等帧节点
+  animeGather['extend'] = {}; //* 额外拓展节点
 
   /*//? S part_0
    ****************************************/
@@ -167,13 +185,27 @@ function pageEventsInAnime() {
     $('.follow-friend').html($(this).parents('.icon-block').prop('outerHTML'));
     //* 开始播放动画
     // animeTimeline.play();
+    //* 禁用按钮
+    $('.icon-choose-btn').attr('disabled', 'disabled');
+    //* 隐藏按钮
+    anime({
+      targets: 'icon-choose-btn',
+      opacity: 0,
+      // duration: 1000,
+      complete() {
+        $('.icon-choose-btn').hide()
+      }
+    });
 
     //* 已选伴友
     // $(this).parents('.icon-block').addClass('icon-block-chick').removeClass('icon-block');
     //* 开始[伴友离场]
     friendLeave();
-    //* 重新渲染已选伴友动画
-    loadIconChooser();
+
+    setTimeout(() => {
+      //* 重新渲染已选伴友动画
+      loadIconChooser();
+    },2100);
   });
 }
 
@@ -187,7 +219,7 @@ $(window).resize(function () {
   if (windowResizeTimerInAnime) {
     clearTimeout(windowResizeTimerInAnime);
   }
-  windowResizeTimerInAnime = setTimeout(function () {
+  windowResizeTimerInAnime = setTimeout(() => {
     initCommonVariate();
   }, 100);
 });

@@ -1,4 +1,3 @@
-
 /**
  * 渲染选择动物
  */
@@ -279,29 +278,29 @@ function loadIconChooser() {
 
   _hideElem(PATH.hatchIcon.rabbit);
 
-/*   const jumpRabbitKeyframes = {
-    translateY: [{
-        value: 50,
-        duration: 50,
-        delay: 100
-      },
-      {
-        value: -90,
-        duration: 150,
-        delay: 100
-      },
-      {
-        value: 0,
-        duration: 100,
-        delay: 100
-      },
-      {
-        value: 0,
-        duration: 100,
-        delay: 1200
-      }
-    ]
-  }; */
+  /*   const jumpRabbitKeyframes = {
+      translateY: [{
+          value: 50,
+          duration: 50,
+          delay: 100
+        },
+        {
+          value: -90,
+          duration: 150,
+          delay: 100
+        },
+        {
+          value: 0,
+          duration: 100,
+          delay: 100
+        },
+        {
+          value: 0,
+          duration: 100,
+          delay: 1200
+        }
+      ]
+    }; */
 
 
 
@@ -325,104 +324,106 @@ function loadIconChooser() {
 
   //*** REPLAYS INIT
 
-{/*   //common replay function
-  const replay = ({
-    initTarget,
-    initValues
-  }, cbPauseArr, cbRestart) => {
-    anime.set(initTarget, {
-      ...initValues
-    });
+  {
+    /*   //common replay function
+      const replay = ({
+        initTarget,
+        initValues
+      }, cbPauseArr, cbRestart) => {
+        anime.set(initTarget, {
+          ...initValues
+        });
 
-    cbPauseArr.forEach(elem => {
-      elem.pause();
-    });
-    cbRestart.restart();
-  };
+        cbPauseArr.forEach(elem => {
+          elem.pause();
+        });
+        cbRestart.restart();
+      };
 
-  //gift icon replay init
-  const giftReplay = document.querySelector(PATH.giftIcon.icon).
-  nextElementSibling;
+      //gift icon replay init
+      const giftReplay = document.querySelector(PATH.giftIcon.icon).
+      nextElementSibling;
 
-  giftReplay.addEventListener("click", function () {
-    replay({
-        initTargets: [`${PATH.giftIcon.gift}`, `${PATH.giftIcon.egg}`],
-        initValues: {
-          opacity: 0
-        }
-      },
+      giftReplay.addEventListener("click", function () {
+        replay({
+            initTargets: [`${PATH.giftIcon.gift}`, `${PATH.giftIcon.egg}`],
+            initValues: {
+              opacity: 0
+            }
+          },
 
-      [giftEggAnimation],
-      giftIconAnimation);
+          [giftEggAnimation],
+          giftIconAnimation);
 
-  });
+      });
 
-  //chick icon replay init
-  const chickReplay = document.querySelector(PATH.chickIcon).nextElementSibling;
+      //chick icon replay init
+      const chickReplay = document.querySelector(PATH.chickIcon).nextElementSibling;
 
-  chickReplay.addEventListener("click", function () {
-    replay({
-        initTargets: `${PATH.chickIcon}`,
-        initValues: {
-          opacity: 0
-        }
-      },
+      chickReplay.addEventListener("click", function () {
+        replay({
+            initTargets: `${PATH.chickIcon}`,
+            initValues: {
+              opacity: 0
+            }
+          },
 
-      [chickJumpAnimation],
-      chickIconAnimation);
+          [chickJumpAnimation],
+          chickIconAnimation);
 
-  });
+      });
 
-  //basket icon replay init
-  const basketReplay = document.querySelector(PATH.basketIcon.icon).
-  nextElementSibling;
+      //basket icon replay init
+      const basketReplay = document.querySelector(PATH.basketIcon.icon).
+      nextElementSibling;
 
-  basketReplay.addEventListener("click", function () {
-    replay({
-        initTargets: `${PATH.basketIcon.icon}`,
-        initValues: {
-          opacity: 0
-        }
-      },
+      basketReplay.addEventListener("click", function () {
+        replay({
+            initTargets: `${PATH.basketIcon.icon}`,
+            initValues: {
+              opacity: 0
+            }
+          },
 
-      [eggsRevealAnimation],
-      basketIconAnimation);
+          [eggsRevealAnimation],
+          basketIconAnimation);
 
-  });
+      });
 
-  //painting icon replay init
-  const paintingReplay = document.querySelector(PATH.paintingIcon.icon).
-  nextElementSibling;
+      //painting icon replay init
+      const paintingReplay = document.querySelector(PATH.paintingIcon.icon).
+      nextElementSibling;
 
-  paintingReplay.addEventListener("click", function () {
-    _hideElem(PATH.paintingIcon.eggTop);
-    replay({
-        initTargets: `${PATH.paintingIcon.eggTop}`,
-        initValues: {
-          opacity: 0
-        }
-      },
+      paintingReplay.addEventListener("click", function () {
+        _hideElem(PATH.paintingIcon.eggTop);
+        replay({
+            initTargets: `${PATH.paintingIcon.eggTop}`,
+            initValues: {
+              opacity: 0
+            }
+          },
 
-      [paintingAnimation, paintedPartAnimation],
-      paintingIconAnimation);
+          [paintingAnimation, paintedPartAnimation],
+          paintingIconAnimation);
 
-  });
+      });
 
-  //painting icon replay init
-  const hatchReplay = document.querySelector(PATH.hatchIcon.icon).
-  nextElementSibling;
+      //painting icon replay init
+      const hatchReplay = document.querySelector(PATH.hatchIcon.icon).
+      nextElementSibling;
 
-  hatchReplay.addEventListener("click", function () {
-    _hideElem(PATH.hatchIcon.rabbit);
-    replay({
-        initTargets: `${PATH.hatchIcon.icon}`,
-        initValues: {
-          opacity: 0
-        }
-      },
+      hatchReplay.addEventListener("click", function () {
+        _hideElem(PATH.hatchIcon.rabbit);
+        replay({
+            initTargets: `${PATH.hatchIcon.icon}`,
+            initValues: {
+              opacity: 0
+            }
+          },
 
-      [jumpRabbitAnimation],
-      hatchIconAnimation);
+          [jumpRabbitAnimation],
+          hatchIconAnimation);
 
-  }); */}
+      }); */
+  }
 }

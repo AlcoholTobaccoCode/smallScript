@@ -27,13 +27,35 @@ section {
   opacity: 0;
   // background-image: linear-gradient(-180deg, #f8d6ce8f, #ffbfaf91);
   // background-image: linear-gradient(-180deg,#f8d6ce,#ffbfaf);
+  // background-color: rgba(54, 59, 64, 1);
+}
+
+/* 幕布 */
+.bg {
+  z-index: -1;
+  position: relative;
+  opacity: 1;
+}
+
+/* 白色幕布 */
+.bg-light {
+  // background-color: rgba(54, 59, 64, 1);
+  // background-image: linear-gradient(to right, #acb6e5 , #86fde8 );
+  // background-image: linear-gradient(-180deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+  background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+}
+
+/* 黑色幕布 */
+.bg-dark {
   background-color: rgba(54, 59, 64, 1);
 }
 
 /* S 动物选择样式
 ***********************************/
-.follow-friend, //* 已选伴友
-.icon-choose-body { //* 伴友选择
+.follow-friend,
+//* 已选伴友
+.icon-choose-body {
+  //* 伴友选择
   position: absolute;
   display: flex;
   justify-content: center;
@@ -94,6 +116,7 @@ section {
   } */
 }
 
+//* 欢迎词
 .welcome {
   position: absolute;
   bottom: 1rem;
@@ -111,6 +134,7 @@ section {
 
 //* / 动物选择样式
 
+//* 点击按钮水波纹
 .ani-ripple {
   .ripple {
     position: absolute;
@@ -122,7 +146,7 @@ section {
     transform: scale(0);
     pointer-events: none;
   }
-  
+
   .ripple.show {
     -webkit-animation: ripple .45s ease-out;
     -moz-animation: ripple .45s ease-out;
@@ -159,11 +183,13 @@ section {
 
 .follow-friend {
   position: absolute;
+  left: -3rem;
 
   .icon-choose-btn {
     display: none;
   }
 }
+
 //* /已选伴友
 
 /* E Common
@@ -176,23 +202,28 @@ section {
   .welcome_0 {}
 }
 
-.part_1 {
-
-}
+.part_1 {}
 
 /* S 顺序模块
 ***********************************/
 
-//* project num 
+//* project num
 .icon-project-num {
   position: absolute;
   right: -25rem;
   top: 1rem;
-  transform: scale(.5);
+  // transform: scale(.5);
 
   svg {}
 }
 
+//* bird
+.icon-bird {
+  position: absolute;
+  right: -3rem;
+  top: 1rem;
+  transform: scale(0.1) rotateY(180deg);
+}
 
 //* 语言支持
 .language {
@@ -203,3 +234,25 @@ section {
 
 /* E 顺序模块
 ***********************************/
+
+//* 扩展 - 太阳
+.extend-sun {
+  position: absolute;
+  top: 20rem;
+  right: 0;
+  transform: rotateY(180deg);
+  width: 2rem;
+  opacity: 0;
+
+  // top: .2rem;
+  // right: .5rem;
+
+
+  //* 先隐藏太阳的五官
+  .sun-cheek-red,
+  .extend-sun-mouth, 
+  .extend-sun-eye {
+    opacity: 0;
+  }
+
+}
