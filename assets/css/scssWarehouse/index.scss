@@ -247,6 +247,9 @@ section {
   // top: .2rem;
   // right: .5rem;
 
+  .extend-sun-body {
+    overflow: visible;
+  }
 
   //* 先隐藏太阳的五官
   .sun-cheek-red,
@@ -255,4 +258,23 @@ section {
     opacity: 0;
   }
 
+}
+
+//* 扩展 - 月亮
+.extend-moon {
+  position: absolute;
+  top: 20rem;
+  left: 0;
+  width: 2rem;
+  opacity: 1;
+
+  // top: .2rem;
+  // left: .5rem;
+  .extend-moon-body {
+    overflow: visible;
+  }
+
+  .extend-moon-zzz {
+    opacity: 0;
+  }
 }

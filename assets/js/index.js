@@ -116,6 +116,9 @@ function initAnime() {
   animeGather['chooseFriend'] = {}; //* 创建伴友离场等帧节点
   animeGather['extend'] = {}; //* 额外拓展节点
 
+  //* 日落时分
+  activeSunAndMoon('sunset');
+
   /*//? S part_0
    ****************************************/
   // animePart_0();
@@ -205,6 +208,8 @@ function pageEventsInAnime() {
     setTimeout(() => {
       //* 重新渲染已选伴友动画
       loadIconChooser();
+      //* 日出
+      activeSunAndMoon('sunrise');
     },2100);
   });
 }

@@ -215,8 +215,28 @@ section {
   opacity: 0;
 }
 
+.extend-sun .extend-sun-body {
+  overflow: visible;
+}
+
 .extend-sun .sun-cheek-red,
 .extend-sun .extend-sun-mouth,
 .extend-sun .extend-sun-eye {
+  opacity: 0;
+}
+
+.extend-moon {
+  position: absolute;
+  top: 20rem;
+  left: 0;
+  width: 2rem;
+  opacity: 1;
+}
+
+.extend-moon .extend-moon-body {
+  overflow: visible;
+}
+
+.extend-moon .extend-moon-zzz {
   opacity: 0;
 }
