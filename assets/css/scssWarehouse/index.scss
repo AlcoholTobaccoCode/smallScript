@@ -39,6 +39,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  opacity: 0;
 
   h1 {
     width: 100%;
@@ -47,6 +48,7 @@ section {
     font-size: .32rem;
   }
 
+  .icon-block-chick,
   .icon-block {
     width: 1rem;
     text-align: center;
@@ -177,3 +179,27 @@ section {
 .part_1 {
 
 }
+
+/* S 顺序模块
+***********************************/
+
+//* project num 
+.icon-project-num {
+  position: absolute;
+  right: -25rem;
+  top: 1rem;
+  transform: scale(.5);
+
+  svg {}
+}
+
+
+//* 语言支持
+.language {
+  position: absolute;
+  top: -25rem;
+}
+
+
+/* E 顺序模块
+***********************************/

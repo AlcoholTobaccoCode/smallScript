@@ -35,6 +35,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  opacity: 0;
 }
 
 .follow-friend h1,
@@ -45,21 +46,27 @@ section {
   font-size: .32rem;
 }
 
+.follow-friend .icon-block-chick,
 .follow-friend .icon-block,
+.icon-choose-body .icon-block-chick,
 .icon-choose-body .icon-block {
   width: 1rem;
   text-align: center;
   margin: 0 .15rem;
 }
 
+.follow-friend .icon-block-chick .icon,
 .follow-friend .icon-block .icon,
+.icon-choose-body .icon-block-chick .icon,
 .icon-choose-body .icon-block .icon {
   width: 100%;
   height: 100px;
   margin-bottom: .5rem;
 }
 
+.follow-friend .icon-block-chick svg,
 .follow-friend .icon-block svg,
+.icon-choose-body .icon-block-chick svg,
 .icon-choose-body .icon-block svg {
   width: 100%;
   height: 100%;
@@ -159,3 +166,20 @@ section {
   font-size: .22rem;
   color: #fff;
 }
+
+/* S 顺序模块
+***********************************/
+.icon-project-num {
+  position: absolute;
+  right: -25rem;
+  top: 1rem;
+  transform: scale(0.5);
+}
+
+.language {
+  position: absolute;
+  top: -25rem;
+}
+
+/* E 顺序模块
+***********************************/

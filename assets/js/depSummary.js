@@ -391,10 +391,10 @@ function initAnime() {
   //* 创建时间线
   animeTimeline
     //* 第一部分
-    // .add(animeGather.extend['fire']['cf_log_container']) //* 篝火渐显
-    // .add(animeGather.extend['fire']['base_fire']) //* 篝火渐显
-    // .add(animeGather.extend['fire']['fireNodes1']) //* 篝火渐显
-    // .add(animeGather.extend['fire']['fireNodes2']) //* 篝火渐显
+    .add(animeGather.extend['fire']['cf_log_container']) //* 篝火渐显
+    .add(animeGather.extend['fire']['base_fire']) //* 篝火渐显
+    .add(animeGather.extend['fire']['fireNodes1']) //* 篝火渐显
+    .add(animeGather.extend['fire']['fireNodes2']) //* 篝火渐显
     .add(animeGather.section['section_part_0']['time']['old_year_in'], '-=1000') //* 过往
     .add(animeGather.section['section_part_0']['time']['segmentation_in'], '-=1500') //* 分隔符
     .add(animeGather.section['section_part_0']['time']['new_year_in'], '-=2000') //* 未来

@@ -7,7 +7,12 @@
 
 var globalClient = {}, //* 全局窗口尺寸存储
   animeGather = {}, //* 动画对象集合
+  animeTimelineGather = {}, //* 时间线集合
   animeTimeline = anime.timeline({
+    easing: 'easeInOutQuad',
+    duration: 2000
+  }), //* 创建动画时间轴
+  animeTimelines = anime.timeline({
     easing: 'easeInOutQuad',
     duration: 2000
   }), //* 创建动画时间轴
@@ -67,16 +72,14 @@ function initCommonVariate() {
     'height': globalClient.y,
     // 'left': -globalClient.x
   });
-
+  //* 选择伴友主体
   $('.icon-choose-body').css({
-    'top': (globalClient.x / 4),
+    'top': (globalClient.x / 6),
     'width': globalClient.x,
-    'opacity': 0,
   });
-
+  //* 已选伴友
   $('.follow-friend').css({
     'left': -globalClient.x,
-    'opacity': 0,
   });
 
 }
@@ -93,6 +96,7 @@ function initAnime() {
   }); */
 
   animeGather['section'] = {}; //* 创建主体存储变量
+  animeGather['chooseFriend'] = {}; //* 创建伴友离场等帧节点
 
   /*//? S part_0
    ****************************************/
@@ -124,7 +128,6 @@ function animeTimelineControl() {
 
   return timeLine;
 }
-
 
 /**
  * 加载页面点击事件
@@ -163,7 +166,14 @@ function pageEventsInAnime() {
     //* 存储伴友
     $('.follow-friend').html($(this).parents('.icon-block').prop('outerHTML'));
     //* 开始播放动画
-    animeTimeline.play();
+    // animeTimeline.play();
+
+    //* 已选伴友
+    // $(this).parents('.icon-block').addClass('icon-block-chick').removeClass('icon-block');
+    //* 开始[伴友离场]
+    friendLeave();
+    //* 重新渲染已选伴友动画
+    loadIconChooser();
   });
 }
 
