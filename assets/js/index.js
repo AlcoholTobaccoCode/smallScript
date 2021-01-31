@@ -99,8 +99,9 @@ function initCommonVariate() {
   $('.struggle').css({
     'top': '.5rem',
     left: globalClient.x / 100 / 2 -2.5 + 'rem',
-    top: '1rem',
+    // top: '1rem',
   });
+
 }
 
 /**
@@ -195,24 +196,19 @@ function pageEventsInAnime() {
     //* 存储伴友
     $('.follow-friend').html($(this).parents('.icon-block').prop('outerHTML'));
     //* 开始播放动画
-    // animeTimeline.play();
     //* 禁用按钮
     $('.icon-choose-btn').attr('disabled', 'disabled');
     //* 隐藏按钮
     anime({
       targets: 'icon-choose-btn',
       opacity: 0,
-      // duration: 1000,
       complete() {
         $('.icon-choose-btn').hide()
       }
     });
 
-    //* 已选伴友
-    // $(this).parents('.icon-block').addClass('icon-block-chick').removeClass('icon-block');
     //* 开始[伴友离场]
     friendLeave();
-
     setTimeout(() => {
       //* 重新渲染已选伴友动画
       loadIconChooser();
@@ -221,6 +217,165 @@ function pageEventsInAnime() {
     },2100);
   });
 }
+
+
+/**
+ * 日出日落
+ * @param {string} action sunrise/sunset 
+ */
+function activeSunAndMoon(action) {
+  let common = {
+      duration: 2000,
+      easing: 'easeInOutQuad',
+    },
+    up = function (name, position) {
+      return {
+        targets: name,
+        top: '.2rem',
+        ...position,
+        ...common,
+        opacity: 1,
+      }
+    },
+    down = function (name, position) {
+      return {
+        targets: name,
+        top: '20rem',
+        ...position,
+        ...common,
+        opacity: 0,
+      }
+    };
+
+  //* 太阳自身旋转
+  anime({
+    targets: ['.extend-sun-body', '.extend-moon-body'],
+    rotate: {
+      value: '+=2turn',
+      duration: 3600,
+      easing: 'easeInOutQuad'
+    },
+  });
+
+  switch (action) {
+    case 'sunrise': //* 日出
+      //* 太阳进入时的独特动画
+      //* 太阳升起
+      anime({
+        ...up('.extend-sun', {
+          right: '.5rem'
+        }),
+        complete() {
+          //* 出现太阳五官
+          anime({
+            targets: ['.sun-cheek-red', '.extend-sun-mouth', '.extend-sun-eye'],
+            opacity: 1,
+            duration: 1000
+          });
+        }
+      });
+      //* 月亮下落
+      anime({
+        ...down('.extend-moon', {
+          left: '0'
+        }),
+        complete() {
+          //* 出现月亮 zzz
+          anime({
+            targets: ['.extend-moon-zzz'],
+            opacity: 0,
+            duration: 1000,
+            complete() {
+              animeGather.extend['moonUp'].pause();//* 暂停月亮动画
+            }
+          });
+        }
+      });
+      //* 改变背景色
+      //* 黑色幕布上隐
+      anime({
+        targets: '.bg-dark',
+        top: -(globalClient.y / 100 * 3), // * 3 是因为本身已经处于 -globalClient.y 位置
+        ...common,
+        duration: 2600,
+        opacity: 0
+      });
+      //* 白色幕布上浮
+      anime({
+        targets: '.bg-light',
+        top: -(globalClient.y / 100 + 3) + 'rem', //* -30 防止留白
+        ...common,
+        opacity: 1
+      });
+      break;
+    case 'sunset': //* 日落
+      //* 太阳落下
+      anime({
+        ...down('.extend-sun', {
+          right: '0'
+        }),
+        complete() {
+          //* 隐藏五官
+          animeGather['extend']['sun'] = anime({
+            targets: ['.sun-cheek-red', '.extend-sun-mouth', '.extend-sun-eye'],
+            opacity: 0,
+            duration: 1000,
+          });
+        }
+      });
+      //* 月亮升起
+      anime({
+        ...up('.extend-moon', {
+          left: '.5rem'
+        }),
+        complete() {
+          //* 出现月亮 zzz
+          if (!animeGather.extend['moonUp']) {
+            animeGather.extend['moonUp'] = anime({
+              targets: ['.extend-moon-zzz'],
+              opacity: 1,
+              delay: 1500,
+              duration: 1000,
+              complete() {
+                anime({
+                  targets: ['.extend-moon-zzz'],
+                  loop: true,
+                  opacity: 0,
+                  scale: 1.5,
+                  duration: 2000,
+                  easing: 'easeInOutSine',
+                });
+              }
+            });
+          } else {
+            animeGather.extend['moonUp'].play();//* 暂停月亮动画
+          }
+
+        }
+      });
+      //* 改变背景色
+      //* 黑色幕布上升至视野
+      anime({
+        targets: '.bg-dark',
+        top: -((globalClient.x / 100) + 20) + 'rem',
+        duration: 2000,
+        easing: 'easeInOutQuad',
+        opacity: 1
+      });
+      //* 白色幕布下沉
+      anime({
+        targets: '.bg-light',
+        top: 0,
+        duration: 2600,
+        easing: 'easeInOutQuad',
+        opacity: 0
+      });
+      break;
+    default:
+      break;
+  }
+}
+
 
 /**
  * 窗口尺寸改变时

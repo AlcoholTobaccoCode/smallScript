@@ -135,6 +135,16 @@ section {
   margin-left: 38%;
 }
 
+.stay-up-late-box {
+  margin-left: 33%;
+}
+
+.stay-up-late-box .stay-up-late {
+  position: relative;
+  opacity: 0;
+  top: .5rem;
+}
+
 .ani-ripple .ripple {
   position: absolute;
   background: rgba(255, 255, 255, 0.5);
@@ -220,6 +230,32 @@ section {
   top: -25rem;
 }
 
+.wish-word,
+.end-sum {
+  margin: 0 auto;
+  font-size: .16rem;
+  width: fit-content;
+  text-align: center;
+}
+
+.wish-word h1,
+.wish-word h2,
+.end-sum h1,
+.end-sum h2 {
+  position: relative;
+  top: .5rem;
+  opacity: 0;
+}
+
+.wish-word {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  color: #fff;
+}
+
 /* E 顺序模块
 ***********************************/
 .extend-sun {
@@ -255,4 +291,19 @@ section {
 
 .extend-moon .extend-moon-zzz {
   opacity: 0;
+}
+
+.sleep-rest {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  bottom: 0;
+  right: -4rem;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

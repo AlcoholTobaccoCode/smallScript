@@ -126,15 +126,15 @@ function friendLeave() {
     .add(animeGather.chooseFriend['leave']['icon_choose_out'], '+=1000')
     .add({
       targets: '.follow-friend',
-      bottom: '1.2rem',
-      left: '5.1rem',
+      bottom: '1.8rem',
+      left: '5rem',
       opacity: 1,
     }) //* 已选伴友 入
     .add(animeGather.chooseFriend['leave']['welcome_0_in']) //* 欢迎词 0 入
     .add(animeGather.chooseFriend['leave']['welcome_0_out'], '+=2500') //* 欢迎词 0 出
     .add({
       targets: '.follow-friend',
-      bottom: '1.2rem',
+      bottom: '1.8rem',
       left: '4rem',
     }) //* 已选伴友 入
     .add(animeGather.chooseFriend['leave']['welcome_1_in']) //* 欢迎词 1 入
@@ -210,14 +210,15 @@ function part_struggle() {
  */
 function overtimeTimeLine(common) {
 
+  //* 第一部分 出
   animeGather.chooseFriend['next_show_project_num_encourage_out'] = {
-    targets: '.project-num-text-encourage1',
-    opacity: 1,
+    targets: '.overtime-box',
+    opacity: 0,
     complete() {
       anime({
         targets: '.stay-up-late-box',
         opacity: 1,
-        duration: 1000,
+        // duration: 1000,
         easing: 'easeInOutQuad'
       });
     }
@@ -226,13 +227,52 @@ function overtimeTimeLine(common) {
   //* 第二部分 第一句话 入
   animeGather.overtime['stay_up_late_box_0_in'] = {
     targets: '.stay-up-late-box-0',
-    opacity: 1
+    opacity: 1,
+    top: 0
   };
 
-  //* 第二部分 第一句话 入
-  animeGather.overtime['stay_up_late_box_0_in'] = {
-    targets: '.stay-up-late-box-0',
-    opacity: 1
+  //* 第二部分 第二句话 入
+  animeGather.overtime['stay_up_late_box_1_in'] = {
+    targets: '.stay-up-late-box-1',
+    opacity: 1,
+    top: 0,
+  };
+
+  //* 第二部分 第三句话 入
+  animeGather.overtime['stay_up_late_box_2_in'] = {
+    targets: '.stay-up-late-box-2',
+    opacity: 1,
+    top: 0,
+    complete() { //* 第三句话结束之后
+      //* 日落
+      activeSunAndMoon('sunset');
+      //* 奋斗者 出
+      //* 休息
+      anime({
+        targets: '.sleep-rest',
+        ...common,
+        width: '4rem',
+        opacity: 1,
+        right: 0,
+      });
+    }
+  };
+
+  //* 奋斗者出
+  animeGather.overtime['struggle_out'] = {
+    targets: '.struggle',
+    ...common,
+    width: '0',
+    left: globalClient.x / 100 / 2 - 2.5 + 'rem',
+    top: '.5rem',
+    opacity: 0,
+  };
+
+  //* 奋斗第二句话 出
+  animeGather.overtime['stay-up-late-box_out'] = {
+    targets: '.stay-up-late-box',
+    ...common,
+    opacity: 0
   };
 
 
@@ -240,9 +280,91 @@ function overtimeTimeLine(common) {
   animeTimelineGather.overtime
   .add(animeGather.chooseFriend['next_show_project_num_encourage_out']) //* 加班第一部分 出
   .add(animeGather.overtime['stay_up_late_box_0_in']) //* 加班第二部分 第一句话 入
+  .add(animeGather.overtime['stay_up_late_box_1_in']) //* 加班第二部分 第二句话 入
+  .add(animeGather.overtime['stay_up_late_box_2_in']) //* 加班第二部分 第三句话 入
+  .add(animeGather.overtime['struggle_out']) //* 奋斗者 出
+  .add(animeGather.overtime['stay-up-late-box_out']) //* 加班第二部分 出
+  .add({//* 伴友移动至休息人旁边
+    targets: '.follow-friend',
+    bottom: '0',
+    ...common,
+    left: (globalClient.x / 100 - 1 - 4),
+    complete() {
+      //* 最后总结
+      $('.end-sum').find('h2').each(function(index, item) {
+        anime({
+          targets: '.' + $(item).attr('class'),
+          duration: 1000 * index,
+          easing: 'easeInOutQuad',
+          delay: 500 * index,
+          opacity: 1,
+          complete() {
+            $(item).addClass('end');
+          }
+        });
+      });
+    }
+  }, '-=2000');
+
+
+  let waitEndTimerInIndex = null,
+    waitEndTimerInIndexForWishEnd = null;
+  waitEndTimerInIndex = setInterval(() => {
+    if ($('.end').length >= 11) {
+      $('.end-sum').hide(); //* 隐藏总结文字
+      $('.wish-word').find('h2').each(function(index, item) {
+        anime({
+          targets: '.' + $(item).attr('class'),
+          duration: 1000 * index,
+          easing: 'easeInOutQuad',
+          delay: 500 * index,
+          opacity: 1,
+          complete() {
+            $(item).addClass('wish-end');
+          }
+        });
+      });
+
+      //* 休息者出
+      anime({
+        targets: '.sleep-rest',
+        ...common,
+        width: 0,
+        opacity: 0,
+        right: '-4rem',
+      });
+      
+      //* 小鸡 出
+      anime({
+        targets: '.follow-friend',
+        ...common,
+        opacity: 0,
+      });
+
+      
+      //* 启动烟花
+      activeFireworks();
+      clearInterval(waitEndTimerInIndex);
+      waitEndTimerInIndex = null;
+    }
+  },100);
+
+  waitEndTimerInIndexForWishEnd = setInterval(() => {
+    if ($('.wish-end').length >= 5) {
+      //* 祝福语 出
+      anime({
+        targets: '.wish-word',
+        ...common,
+        delay: 1000,
+        opacity: 0,
+      });
+      clearInterval(waitEndTimerInIndexForWishEnd);
+      waitEndTimerInIndexForWishEnd = null;
+    }
+
+  },100);
 
 }
-
 
 /**
  * 创建一个空的时间线
@@ -295,153 +417,4 @@ function castlePeakWhiteCloudsKeyFrames() {
       });
     }
   });
-}
-
-/**
- * 日出日落
- * @param {string} action sunrise/sunset 
- */
-function activeSunAndMoon(action) {
-  let common = {
-      duration: 2000,
-      easing: 'easeInOutQuad',
-    },
-    up = function (name, position) {
-      return {
-        targets: name,
-        top: '.2rem',
-        ...position,
-        ...common,
-        opacity: 1,
-      }
-    },
-    down = function (name, position) {
-      return {
-        targets: name,
-        top: '20rem',
-        ...position,
-        ...common,
-        opacity: 0,
-      }
-    };
-
-  //* 太阳自身旋转
-  anime({
-    targets: ['.extend-sun-body', '.extend-moon-body'],
-    rotate: {
-      value: '+=2turn',
-      duration: 3600,
-      easing: 'easeInOutQuad'
-    },
-  });
-
-  switch (action) {
-    case 'sunrise': //* 日出
-      //* 太阳进入时的独特动画
-      //* 太阳升起
-      anime({
-        ...up('.extend-sun', {
-          right: '.5rem'
-        }),
-        complete() {
-          //* 出现太阳五官
-          anime({
-            targets: ['.sun-cheek-red', '.extend-sun-mouth', '.extend-sun-eye'],
-            opacity: 1,
-            duration: 1000
-          });
-        }
-      });
-      //* 月亮下落
-      anime({
-        ...down('.extend-moon', {
-          left: '0'
-        }),
-        complete() {
-          //* 出现月亮 zzz
-          anime({
-            targets: ['.extend-moon-zzz'],
-            opacity: 0,
-            duration: 1000
-          });
-        }
-      });
-      //* 改变背景色
-      //* 黑色幕布上隐
-      anime({
-        targets: '.bg-dark',
-        top: -(globalClient.y / 100 * 3), // * 3 是因为本身已经处于 -globalClient.y 位置
-        ...common,
-        duration: 2600,
-        opacity: 0
-      });
-      //* 白色幕布上浮
-      anime({
-        targets: '.bg-light',
-        top: -(globalClient.y / 100 + 3) + 'rem', //* -30 防止留白
-        ...common,
-        opacity: 1
-      });
-      break;
-    case 'sunset': //* 日落
-      //* 太阳落下
-      anime({
-        ...down('.extend-sun', {
-          right: '0'
-        }),
-        complete() {
-          //* 隐藏五官
-          animeGather['extend']['sun'] = anime({
-            targets: ['.sun-cheek-red', '.extend-sun-mouth', '.extend-sun-eye'],
-            opacity: 0,
-            duration: 1000,
-          });
-        }
-      });
-      //* 月亮升起
-      anime({
-        ...up('.extend-moon', {
-          left: '.5rem'
-        }),
-        complete() {
-          //* 出现月亮 zzz
-          anime({
-            targets: ['.extend-moon-zzz'],
-            opacity: 1,
-            delay: 1500,
-            duration: 1000,
-            complete() {
-              anime({
-                targets: ['.extend-moon-zzz'],
-                loop: true,
-                opacity: 0,
-                scale: 1.5,
-                duration: 2000,
-                easing: 'easeInOutSine',
-              });
-            }
-          });
-        }
-      });
-      //* 改变背景色
-      //* 黑色幕布上升至视野
-      anime({
-        targets: '.bg-dark',
-        top: -((globalClient.x / 100) + 20) + 'rem',
-        duration: 2000,
-        easing: 'easeInOutQuad',
-        opacity: 1
-      });
-      //* 白色幕布下沉
-      anime({
-        targets: '.bg-light',
-        top: 0,
-        duration: 2600,
-        easing: 'easeInOutQuad',
-        opacity: 0
-      });
-      break;
-    default:
-      break;
-  }
 }

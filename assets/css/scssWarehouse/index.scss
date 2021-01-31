@@ -135,21 +135,12 @@ section {
 
 //* 加班第二段话
 .stay-up-late-box {
+  margin-left: 33%;
 
   .stay-up-late {
-    
-  }
-
-  .stay-up-late-box-0 {
-
-  }
-
-  .stay-up-late-box-1 {
-
-  }
-
-  .stay-up-late-box-2 {
-
+    position: relative;
+    opacity: 0;
+    top: .5rem
   }
 }
 
@@ -253,6 +244,32 @@ section {
   top: -25rem;
 }
 
+//* 希望
+.wish-word,
+//* 结束时总结
+.end-sum {
+  margin: 0 auto;
+  font-size: .16rem;
+  width: fit-content;
+  text-align: center;
+
+  h1,
+  h2 {
+    position: relative;
+    top: .5rem;
+    opacity: 0;
+  }
+}
+
+.wish-word {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  color: #fff;
+}
+
 
 /* E 顺序模块
 ***********************************/
@@ -293,4 +310,24 @@ section {
   .extend-moon-zzz {
     opacity: 0;
   }
+}
+
+//* 扩展 - 休息
+.sleep-rest {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  // opacity: 1;
+  // width: 4rem;
+  overflow: hidden;
+
+  bottom: 0;
+  right: -4rem;
+}
+
+//* 为最后的烟花
+canvas{
+  position: absolute;
+  top: 0;
+  left: 0;
 }
