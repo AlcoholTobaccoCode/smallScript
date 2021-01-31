@@ -1,4 +1,10 @@
 @charset "UTF-8";
+/*
+ * @description: index 页面样式支持
+ * @Author: duQings duqings@foxmail.com
+ * @Date: 2021年1月27日19:39:24
+ * @FilePath: assets\css\scssWarehouse\index.scss
+ */
 /* S Common
 ***********************************/
 html,
@@ -104,11 +110,6 @@ section {
   transition: all ease-in-out .3s;
   line-height: .4rem;
   outline: none;
-  /* &:hover {
-    color: #2b2d2f;
-    background-color: #fff;
-    border-radius: .08rem;
-  } */
 }
 
 .welcome {
@@ -124,6 +125,14 @@ section {
 
 .welcome h3 {
   font-size: .16rem;
+}
+
+.stay-up-late-box,
+.overtime-box {
+  position: absolute;
+  bottom: .5rem;
+  opacity: 0;
+  margin-left: 38%;
 }
 
 .ani-ripple .ripple {
@@ -171,6 +180,7 @@ section {
 .follow-friend {
   position: absolute;
   left: -3rem;
+  z-index: 19981125;
 }
 
 .follow-friend .icon-choose-btn {
@@ -186,17 +196,23 @@ section {
 
 /* S 顺序模块
 ***********************************/
-.icon-project-num {
+.reveal-vert {
   position: absolute;
-  right: -25rem;
-  top: 1rem;
+  right: 0;
+  bottom: -6rem;
 }
 
 .icon-bird {
   position: absolute;
   right: -3rem;
-  top: 1rem;
-  transform: scale(0.1) rotateY(180deg);
+  bottom: 6rem;
+  width: 2rem;
+  z-index: 19981125;
+}
+
+.icon-bird .icon-brid-body {
+  width: 3rem;
+  transform: scale(0.2) rotateY(180deg);
 }
 
 .language {

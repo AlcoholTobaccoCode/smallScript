@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/*
+ * @description: index 页面 [奋斗] 样式支持
+ * @Author: duQings duqings@foxmail.com
+ * @Date: 2021年1月31日01:49:15
+ * @FilePath: assets\css\scssWarehouse\struggle.scss
+ */
+.struggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.struggle svg {
+  height: 100%;
+  width: 100%;
+}
+
+.struggle svg * {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.struggle svg .swet,
+.struggle svg .debre,
+.struggle svg .flash,
+.struggle svg #paper1 {
+  opacity: 0;
+}

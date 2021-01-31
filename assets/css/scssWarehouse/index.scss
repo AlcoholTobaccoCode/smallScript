@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+/*
+ * @description: index 页面样式支持
+ * @Author: duQings duqings@foxmail.com
+ * @Date: 2021年1月27日19:39:24
+ * @FilePath: assets\css\scssWarehouse\index.scss
+ */
+
 /* S Common
 ***********************************/
 
@@ -25,9 +32,6 @@ section {
   min-width: 100%;
   min-height: 100%;
   opacity: 0;
-  // background-image: linear-gradient(-180deg, #f8d6ce8f, #ffbfaf91);
-  // background-image: linear-gradient(-180deg,#f8d6ce,#ffbfaf);
-  // background-color: rgba(54, 59, 64, 1);
 }
 
 /* 幕布 */
@@ -39,9 +43,6 @@ section {
 
 /* 白色幕布 */
 .bg-light {
-  // background-color: rgba(54, 59, 64, 1);
-  // background-image: linear-gradient(to right, #acb6e5 , #86fde8 );
-  // background-image: linear-gradient(-180deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
   background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
 }
 
@@ -101,19 +102,10 @@ section {
   text-align: center;
   cursor: pointer;
   border-radius: .04rem;
-  // position: absolute;
-  // bottom: -.4rem;
-  // margin-top: -.5rem;
   display: inherit;
   transition: all ease-in-out .3s;
   line-height: .4rem;
   outline: none;
-
-  /* &:hover {
-    color: #2b2d2f;
-    background-color: #fff;
-    border-radius: .08rem;
-  } */
 }
 
 //* 欢迎词
@@ -129,6 +121,35 @@ section {
 
   h3 {
     font-size: .16rem;
+  }
+}
+
+//* 第二部分 加班时间
+.stay-up-late-box, //* 第二部分
+.overtime-box { //* 第一部分
+  position: absolute;
+  bottom: .5rem;
+  opacity: 0;
+  margin-left: 38%;
+}
+
+//* 加班第二段话
+.stay-up-late-box {
+
+  .stay-up-late {
+    
+  }
+
+  .stay-up-late-box-0 {
+
+  }
+
+  .stay-up-late-box-1 {
+
+  }
+
+  .stay-up-late-box-2 {
+
   }
 }
 
@@ -184,6 +205,7 @@ section {
 .follow-friend {
   position: absolute;
   left: -3rem;
+  z-index: 19981125;
 
   .icon-choose-btn {
     display: none;
@@ -198,31 +220,31 @@ section {
 .part_0 {
   font-size: .22rem;
   color: #fff;
-
-  .welcome_0 {}
 }
 
-.part_1 {}
 
 /* S 顺序模块
 ***********************************/
 
 //* project num
-.icon-project-num {
+.reveal-vert {
   position: absolute;
-  right: -25rem;
-  top: 1rem;
-  // transform: scale(.5);
-
-  svg {}
+  right: 0;
+  bottom: -6rem;
 }
 
 //* bird
 .icon-bird {
   position: absolute;
   right: -3rem;
-  top: 1rem;
-  transform: scale(0.1) rotateY(180deg);
+  bottom: 6rem;
+  width: 2rem;
+  z-index: 19981125;
+
+  .icon-brid-body {
+    width: 3rem;
+    transform: scale(0.2) rotateY(180deg);
+  }
 }
 
 //* 语言支持
@@ -244,9 +266,6 @@ section {
   width: 2rem;
   opacity: 0;
 
-  // top: .2rem;
-  // right: .5rem;
-
   .extend-sun-body {
     overflow: visible;
   }
@@ -267,9 +286,6 @@ section {
   left: 0;
   width: 2rem;
   opacity: 1;
-
-  // top: .2rem;
-  // left: .5rem;
   .extend-moon-body {
     overflow: visible;
   }

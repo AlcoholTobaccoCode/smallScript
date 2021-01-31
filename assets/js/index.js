@@ -91,8 +91,15 @@ function initCommonVariate() {
   
   //* 背景变化
   $('.bg').css({
-    'height': globalClient.y + 60, //* 幕布始终大于窗口大小
-    'width': globalClient.x + 60, //* 幕布始终大于窗口大小
+    'height': (globalClient.y / 100 + 10) + 'rem', //* 幕布始终大于窗口大小
+    'width': (globalClient.x / 100) + 'rem', //* 幕布始终大于窗口大小
+  });
+
+  //* 奋斗者主体
+  $('.struggle').css({
+    'top': '.5rem',
+    left: globalClient.x / 100 / 2 -2.5 + 'rem',
+    top: '1rem',
   });
 }
 
@@ -108,13 +115,14 @@ function initAnime() {
   }); */
 
   //* 开始时拉起幕布
-  $('.bg-dark').css({
-    'top': -globalClient.x - 66
-  });
+  /* $('.bg-dark').css({
+    'top': -(globalClient.y / 100 + 3) + 'rem'
+  }); */
 
   animeGather['section'] = {}; //* 创建主体存储变量
   animeGather['chooseFriend'] = {}; //* 创建伴友离场等帧节点
   animeGather['extend'] = {}; //* 额外拓展节点
+  animeGather['overtime'] = {}; //* 加班第二部分开始启动
 
   //* 日落时分
   activeSunAndMoon('sunset');

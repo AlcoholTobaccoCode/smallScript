@@ -14,8 +14,6 @@ function animePart_0() {
     opacity: 1,
   };
 
-  // anime(animeGather.section['section_part_0']['Body'])
-
   //* 第一部分 - 选择
   //* 入
   animeGather.section['section_part_0']['icon_choose_in'] = {
@@ -23,54 +21,6 @@ function animePart_0() {
     left: 0,
     opacity: 1,
   };
-  /* //* 出
-  animeGather.section['section_part_0']['icon_choose_out'] = {
-    targets: '.icon-choose-body',
-    left: -globalClient.x,
-    opacity: 0,
-    delay: 200,
-    duration: 2000
-  };
-
-  //* 第一部分 - 第一段欢迎词
-  //* 入
-  animeGather.section['section_part_0']['welcome_0_in'] = {
-    targets: 'section.part_0 .welcome_0',
-    opacity: 1,
-  };
-  //* 出
-  animeGather.section['section_part_0']['welcome_0_out'] = {
-    targets: 'section.part_0 .welcome_0',
-    opacity: 0,
-  };
-
-  //* 第一部分 - 第二段欢迎词
-  //* 入
-  animeGather.section['section_part_0']['welcome_1_in'] = {
-    targets: 'section.part_0 .welcome_1',
-    opacity: 1,
-  };
-  //* 出
-  animeGather.section['section_part_0']['welcome_1_out'] = {
-    targets: 'section.part_0 .welcome_1',
-    opacity: 0,
-  }; */
-
-  //* 第一部分 - 渲染已选伴友
-  // animeGather.section['section_part_0']['follow_friend_part_0_in'] = ;
-
-
-  /* //! E 第一部分
-   ****************************************/
-  /* animeGather.section['section_part_0']['Body'] = {
-    targets: 'section.part_1',
-    opacity: 1,
-  }; */
-
-  /* //! S 第二部分
-   ****************************************/
-
-
 
   /* //! E 第二部分
    ****************************************/
@@ -82,31 +32,6 @@ function animePart_0() {
       animeTimeline
         .add(animeGather.section['section_part_0']['Body']) //* 身体显
         .add(animeGather.section['section_part_0']['icon_choose_in'], '+=500'); //* 伴友总盒子
-
-      /* setTimeout(() => {
-        animeTimeline.pause();
-      }, 5000); */
-
-    },
-    chooseAfter() { // *选择前
-      animeTimeline
-        .add(animeGather.section['section_part_0']['icon_choose_out'], '+=1000')
-        .add({
-          targets: '.follow-friend',
-          bottom: '1rem',
-          left: '5rem',
-          opacity: 1,
-        }) //* 已选伴友 入
-        .add(animeGather.section['section_part_0']['welcome_0_in']) //* 欢迎词 0 入
-        .add(animeGather.section['section_part_0']['welcome_0_out'], '+=2500') //* 欢迎词 0 出
-        .add({
-          targets: '.follow-friend',
-          bottom: '1rem',
-          left: '4rem',
-          opacity: 1,
-        }) //* 已选伴友 入
-        .add(animeGather.section['section_part_0']['welcome_1_in']) //* 欢迎词 1 入
-        .add(animeGather.section['section_part_0']['welcome_1_out']) //* 欢迎词 1 出
     }
   };
 
@@ -118,17 +43,43 @@ function animePart_0() {
 //  * @param {object} chooseFriend 已选择的伴友
  */
 function friendLeave() {
+  let common = {
+    duration: 2000,
+    easing: 'easeInOutQuad',
+  }
   createTimerLineInstance('chooseFriend'); //* 创建[伴友离场]时间线
 
   animeGather.chooseFriend['stay'] = {}; //* 留下的
   animeGather.chooseFriend['leave'] = {}; //* 离开的
   animeGather.chooseFriend['next_show'] = {}; //* 接下来
 
+  //* 启动青山白云动画
+  castlePeakWhiteCloudsKeyFrames();
   //* 出
   animeGather.chooseFriend['leave']['icon_choose_out'] = {
     targets: '.icon-choose-body',
     left: -globalClient.x,
     opacity: 0,
+    complete() {
+      anime({
+        targets: '.reveal-vert',
+        opacity: 1,
+        bottom: '0',
+        delay: 800,
+        ...common,
+        complete() {
+          //* 鸟儿从远方飞来
+          /* animeGather.extend['bird'] =  */anime({
+            targets: '.icon-bird',
+            bottom: '2rem',
+            right: '2.5rem',
+            duration: 5000,
+            easing: 'easeInOutQuad',
+            delay: 800,
+          });
+        }
+      });
+    },
   };
 
   //* 第一部分 - 第一段欢迎词
@@ -136,6 +87,10 @@ function friendLeave() {
   animeGather.chooseFriend['leave']['welcome_0_in'] = {
     targets: 'section.part_0 .welcome_0',
     opacity: 1,
+    complete() {
+      //* 工作天数滚动
+      digitalScroll('.join-day', 233, 1);
+    }
   };
   //* 出
   animeGather.chooseFriend['leave']['welcome_0_out'] = {
@@ -148,141 +103,146 @@ function friendLeave() {
   animeGather.chooseFriend['leave']['welcome_1_in'] = {
     targets: 'section.part_0 .welcome_1',
     opacity: 1,
+    complete() {
+      //* 工作时长滚动
+      digitalScroll('.work-hours', 12333, 10);
+    }
   };
-  //* 出
+  
+  //* 第一部分 出
   animeGather.chooseFriend['leave']['welcome_1_out'] = {
     targets: 'section.part_0 .welcome_1',
     opacity: 0,
   };
 
-  //* 项目数量 icon 入
-  animeGather.chooseFriend['next_show_project_num_in'] = {
-    targets: '.icon-project-num',
-    opacity: 1,
-    right: '1rem',
-    top: '.2rem',
-    complete() {
-      //* 启动青山白云动画
-      castlePeakWhiteCloudsKeyFrames();
-    }
-  }
-
-  //* 项目数量 icon 出
-  animeGather.chooseFriend['next_show_project_num_out'] = {
-    targets: '.icon-project-num',
-    opacity: 1,
-    right: '-25rem',
-    delay: 4000
-  }
-
   //* 项目数量 - 文本 出
   animeGather.chooseFriend['next_show_project_num__title_out'] = {
     targets: '.project-num-text',
-    opacity: 1,
     right: '-25rem',
     delay: 4000
   }
-
-  //* 项目数量鼓励语
-  animeGather.chooseFriend['next_show_project_num_encourage'] = {
-    targets: '.project-num-text-encourage1',
-    left: '1rem',
-    top: '0.2rem'
-  }
-
-
-  /* //* 项目 - 数量
-  animeGather.chooseFriend['next_show_project_num_'] = {
-    targets: '.follow-friend',
-    right: '1rem',
-    top: '0.2rem',
-    opacity: 1
-  } */
-
-  //* 未选择的伴友逐渐消失
-  /* animeGather.chooseFriend['leave']['otherFriend'] = {
-    targets: '.icon-block',
-    right: -globalClient.x,
-    opacity: 0,
-  };
-
-  //* 未选择的伴友逐渐消失
-  animeGather.chooseFriend['leave']['title'] = {
-    targets: '.icon-choose-body-title',
-    top: -globalClient.y,
-    opacity: 0,
-  };
-
-  //* 未选择的伴友逐渐消失
-  animeGather.chooseFriend['leave']['chooseBtn'] = {
-    targets: '.icon-choose-btn',
-    bottom: globalClient.x * 3,
-    opacity: 0,
-  };
-
-  //* 选择的伴友
-  animeGather.chooseFriend['stay']['friend'] = {
-    targets: '.icon-choose-body',
-    bottom: '1rem',
-    left: '4rem',
-  };
-
-
-  //* 未选择的伴友离开屏幕
-  setTimeout(() => {
-    $('.icon-choose-body').css({
-      'width': 'fit-content',
-      'height': 'fit-content'
-    });
-    $('.icon-block').css('display', 'none');
-    $('.icon-choose-body-title').css('display', 'none');
-    $('.icon-choose-btn').css('display', 'none');
-  }, 3000);
-  animeTimelineGather.chooseFriend
-  .add(animeGather.chooseFriend['leave']['otherFriend'])
-  .add(animeGather.chooseFriend['leave']['title'], '-=2000')
-  .add(animeGather.chooseFriend['leave']['chooseBtn'], '-=2000')
-  .add(animeGather.chooseFriend['stay']['friend'], '-=2000') */
-
 
   animeTimelineGather.chooseFriend
     .add(animeGather.chooseFriend['leave']['icon_choose_out'], '+=1000')
     .add({
       targets: '.follow-friend',
-      bottom: '1rem',
-      left: '5rem',
+      bottom: '1.2rem',
+      left: '5.1rem',
       opacity: 1,
     }) //* 已选伴友 入
     .add(animeGather.chooseFriend['leave']['welcome_0_in']) //* 欢迎词 0 入
     .add(animeGather.chooseFriend['leave']['welcome_0_out'], '+=2500') //* 欢迎词 0 出
     .add({
       targets: '.follow-friend',
-      bottom: '1rem',
+      bottom: '1.2rem',
       left: '4rem',
-      // opacity: 1,
     }) //* 已选伴友 入
     .add(animeGather.chooseFriend['leave']['welcome_1_in']) //* 欢迎词 1 入
-    .add(animeGather.chooseFriend['leave']['welcome_1_out']) //* 欢迎词 1 出
-    .add(animeGather.chooseFriend['next_show_project_num_in']) //* 项目数量 入
+    .add(animeGather.chooseFriend['leave']['welcome_1_out'], '+=2500') //* 欢迎词 1 出
     .add({
       targets: '.follow-friend',
       // left: '10rem',
-      // bottom: '5rem'
-      left: globalClient.x * .58 + 'px',
-      bottom: globalClient.y * .59 + 'px',
-    }) //* 已选伴友 入
-    // .add(animeGather.chooseFriend['next_show_project_num__title_out']) //* 项目数量 青山 出
-    .add(animeGather.chooseFriend['next_show_project_num_out']) //* 项目数量 出
-    .add(animeGather.chooseFriend['next_show_project_num_encourage']) //* 项目数量 出
+      bottom: '0',
+      ...common,
+      left: (globalClient.x / 100 - 1 - 5.5),
+      complete() {
+        //* 青山 出
+        anime({
+          targets: '.reveal-vert',
+          opacity: 1,
+          bottom: '-6rem',
+          delay: 1000,
+          duration: 4000,
+        });
+        //* 鸟儿自由飞翔
+        anime({
+          targets: '.icon-bird',
+          duration: 5000,
+          delay: 1000,
+          easing: 'easeInOutQuad',
+          right: (globalClient.x / 100) + 'rem',
+          bottom: (globalClient.y / 100) + 'rem'
+        });
+        //* 启动奋斗者
+        part_struggle();
+      }
+    }) //* 已选伴友移至奋斗者身旁
+    .add({
+      targets: '.follow-friend',
+      left: globalClient.x / 100 * 0.3 + 'rem',
+      bottom: globalClient.y / 100 * 0.56 + 'rem',
+      delay: 1000,
+    })
+    ;
+}
+
+//* 第二部分开始 struggle 奋斗者 
+function part_struggle() {
+  // stay-up-late-box
+  let common = {
+    duration: 2000,
+    easing: 'easeInOutQuad',
+  }
+  anime({ //* 出现奋斗者
+    targets: '.struggle',
+    ...common,
+    width: '5rem',
+    left: globalClient.x / 100 / 2 - 2.5 + 'rem',
+    top: '1rem',
+    opacity: 1,
+    complete() {
+      struggle(); //* 奋斗者动画
+      anime({
+        ...common,
+        targets: '.overtime-box', //* 加班第一部分
+        opacity: 1,
+        complete() {
+          createTimerLineInstance('overtime'); //* 创建加班第二部分时间线
+          overtimeTimeLine(common); //* 加班第二部分时间线
+        }
+      })
+    }
+  });
+}
+
+/**
+ * 加班第二部分时间线
+ */
+function overtimeTimeLine(common) {
+
+  animeGather.chooseFriend['next_show_project_num_encourage_out'] = {
+    targets: '.project-num-text-encourage1',
+    opacity: 1,
+    complete() {
+      anime({
+        targets: '.stay-up-late-box',
+        opacity: 1,
+        duration: 1000,
+        easing: 'easeInOutQuad'
+      });
+    }
+  }
+
+  //* 第二部分 第一句话 入
+  animeGather.overtime['stay_up_late_box_0_in'] = {
+    targets: '.stay-up-late-box-0',
+    opacity: 1
+  };
+
+  //* 第二部分 第一句话 入
+  animeGather.overtime['stay_up_late_box_0_in'] = {
+    targets: '.stay-up-late-box-0',
+    opacity: 1
+  };
 
 
-  //  animeTimelineGather.pause()
 
-  //* createTimerLineInstance('project_num'); //* 创建[伴友离场]时间线
-
-  //* animeGather.chooseFriend['stay'] = {}; //* 留下的
+  animeTimelineGather.overtime
+  .add(animeGather.chooseFriend['next_show_project_num_encourage_out']) //* 加班第一部分 出
+  .add(animeGather.overtime['stay_up_late_box_0_in']) //* 加班第二部分 第一句话 入
 
 }
+
 
 /**
  * 创建一个空的时间线
@@ -299,6 +259,7 @@ function createTimerLineInstance(timelineName) {
  * 青山与白云 动画效果
  */
 function castlePeakWhiteCloudsKeyFrames() {
+  //* 公共移动方法
   const _revealVert_left = (bottomX, easing, delay) => ({
     translateX: [bottomX, 0],
     opacity: [0, 1],
@@ -334,21 +295,6 @@ function castlePeakWhiteCloudsKeyFrames() {
       });
     }
   });
-
-  //* 鸟儿飞来
-  animeGather.extend['bird'] = anime({
-    targets: '.icon-bird',
-    // left: '3.5rem',
-    // bottom: '5.5rem',
-    bottom: globalClient.y * .65,
-    left: globalClient.x * .1,
-    duration: 5000,
-    complete() {
-
-
-    }
-  })
-
 }
 
 /**
@@ -356,61 +302,47 @@ function castlePeakWhiteCloudsKeyFrames() {
  * @param {string} action sunrise/sunset 
  */
 function activeSunAndMoon(action) {
-  // animeGather['extend'][type] = {};
-
   let common = {
-    duration: 2000,
-    easing: 'easeInOutQuad',
-  },
-  up = function(name, position){
-    return  {
-      targets: name,
-      top: '.2rem',
-      ...position,
-      ...common,
-      opacity: 1,
-    }
-  },
-  down = function(name, position){
-    return  {
-      targets: name,
-      top: '20rem',
-      ...position,
-      ...common,
-      opacity: 0,
-    }
-  };
+      duration: 2000,
+      easing: 'easeInOutQuad',
+    },
+    up = function (name, position) {
+      return {
+        targets: name,
+        top: '.2rem',
+        ...position,
+        ...common,
+        opacity: 1,
+      }
+    },
+    down = function (name, position) {
+      return {
+        targets: name,
+        top: '20rem',
+        ...position,
+        ...common,
+        opacity: 0,
+      }
+    };
 
   //* 太阳自身旋转
   anime({
     targets: ['.extend-sun-body', '.extend-moon-body'],
     rotate: {
-      value: '+=2turn', // 0 * 2 = '2turn'
+      value: '+=2turn',
       duration: 3600,
       easing: 'easeInOutQuad'
     },
   });
-  //* TODO 太阳光
-  /* animeGather['extend']['sun'] = anime({
-    targets: '.extend-sun-light-line',
-    direction: 'alternate',
-    loop: true,
-    opacity: .5,
-    // easing: 'easeInOutSine',
-    duration: 3600,
-    scale: {
-      value: 2,
-      duration: 3600,
-      easing: 'easeInOutQuart'
-    },
-  }); */
 
   switch (action) {
     case 'sunrise': //* 日出
       //* 太阳进入时的独特动画
       //* 太阳升起
       anime({
-        ...up('.extend-sun', {right: '.5rem'}),
+        ...up('.extend-sun', {
+          right: '.5rem'
+        }),
         complete() {
           //* 出现太阳五官
           anime({
@@ -422,7 +354,9 @@ function activeSunAndMoon(action) {
       });
       //* 月亮下落
       anime({
-        ...down('.extend-moon', {left: '0'}),
+        ...down('.extend-moon', {
+          left: '0'
+        }),
         complete() {
           //* 出现月亮 zzz
           anime({
@@ -433,17 +367,18 @@ function activeSunAndMoon(action) {
         }
       });
       //* 改变背景色
-      //* 黑色幕布上浮
+      //* 黑色幕布上隐
       anime({
         targets: '.bg-dark',
-        top: -globalClient.y * 3, // * 3 是因为本身已经处于 -globalClient.y 位置
+        top: -(globalClient.y / 100 * 3), // * 3 是因为本身已经处于 -globalClient.y 位置
         ...common,
+        duration: 2600,
         opacity: 0
       });
       //* 白色幕布上浮
       anime({
         targets: '.bg-light',
-        top: -globalClient.y - 30, //* -30 防止留白
+        top: -(globalClient.y / 100 + 3) + 'rem', //* -30 防止留白
         ...common,
         opacity: 1
       });
@@ -451,7 +386,9 @@ function activeSunAndMoon(action) {
     case 'sunset': //* 日落
       //* 太阳落下
       anime({
-        ...down('.extend-sun', {right: '0'}),
+        ...down('.extend-sun', {
+          right: '0'
+        }),
         complete() {
           //* 隐藏五官
           animeGather['extend']['sun'] = anime({
@@ -463,12 +400,15 @@ function activeSunAndMoon(action) {
       });
       //* 月亮升起
       anime({
-        ...up('.extend-moon', {left: '.5rem'}),
+        ...up('.extend-moon', {
+          left: '.5rem'
+        }),
         complete() {
           //* 出现月亮 zzz
           anime({
             targets: ['.extend-moon-zzz'],
             opacity: 1,
+            delay: 1500,
             duration: 1000,
             complete() {
               anime({
@@ -487,8 +427,7 @@ function activeSunAndMoon(action) {
       //* 黑色幕布上升至视野
       anime({
         targets: '.bg-dark',
-        // top: -globalClient.x - 66,
-        top: -globalClient.x - 66, // * 3 是因为本身已经处于 -globalClient.y 位置
+        top: -((globalClient.x / 100) + 20) + 'rem',
         duration: 2000,
         easing: 'easeInOutQuad',
         opacity: 1
@@ -497,14 +436,12 @@ function activeSunAndMoon(action) {
       anime({
         targets: '.bg-light',
         top: 0,
-        duration: 2000,
+        duration: 2600,
         easing: 'easeInOutQuad',
         opacity: 0
       });
       break;
-
     default:
       break;
   }
-
 }
