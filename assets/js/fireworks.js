@@ -6,16 +6,16 @@
  */
 
 var RENDERER = {
-	LEAF_INTERVAL_RANGE : {min : 100, max : 200},
-	FIREWORK_INTERVAL_RANGE : {min : 20, max : 200},
-	SKY_COLOR : 'hsla(210, 60%, %luminance%, 0.2)',
-	STAR_COUNT : 100,
+	LEAF_INTERVAL_RANGE : {min : 50, max : 100},
+	FIREWORK_INTERVAL_RANGE : {min : 15, max : 50}, //* 创建烟火速率
+	SKY_COLOR : 'hsla(210, 60%, %luminance%, 0.2)', //* 天空颜色
+	STAR_COUNT : 99, //* 星星数量
 	
 	init : function(){
-		this.setParameters();
-		this.reconstructMethod();
-		this.createTwigs();
-		this.createStars();
+		this.setParameters(); //* 面板参数
+		this.reconstructMethod(); //* 构建方法
+		this.createTwigs(); //* 创建树枝
+		this.createStars(); //* 创建星星
 		this.render();
 	},
 	setParameters : function(){
@@ -259,15 +259,15 @@ var FIREWORK = function(width, height, renderer){
 	this.init();
 };
 FIREWORK.prototype = {
-	COLOR : 'hsl(%hue, 80%, 60%)',
-	PARTICLE_COUNT : 300,
-	DELTA_OPACITY : 0.01,
-	RADIUS : 2,
-	VELOCITY : -3,
-	WAIT_COUNT_RANGE : {min : 30, max : 60},
+	COLOR : 'hsl(%hue, 80%, 60%)', //* 颜色
+	PARTICLE_COUNT : 400,//* 数量
+	DELTA_OPACITY : 0.01, //* 透明度
+	RADIUS : 4, //* 半径
+	VELOCITY : -2, //* 速度
+	WAIT_COUNT_RANGE : {min : 20, max : 70}, //* 数量
 	THRESHOLD : 50,
 	DELTA_THETA : Math.PI / 10,
-	GRAVITY : 0.002,
+	GRAVITY : 0.0015,
 	
 	init : function(){
 		this.setParameters();
@@ -276,7 +276,7 @@ FIREWORK.prototype = {
 	setParameters : function(){
 		var hue = 256 * Math.random() | 0;
 			
-		this.x = this.renderer.getRandomValue({min : this.width / 8, max : this.width * 7 / 8});
+		this.x = this.renderer.getRandomValue({min : this.width / 4, max : this.width * 10 / 8});
 		this.y = this.renderer.getRandomValue({min : this.height / 4, max : this.height / 2});
 		this.x0 = this.x;
 		this.y0 = this.height + this.RADIUS;

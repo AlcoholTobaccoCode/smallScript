@@ -123,7 +123,7 @@ function friendLeave() {
   }
 
   animeTimelineGather.chooseFriend
-    .add(animeGather.chooseFriend['leave']['icon_choose_out'], '+=1000')
+    .add(animeGather.chooseFriend['leave']['icon_choose_out'])
     .add({
       targets: '.follow-friend',
       bottom: '1.8rem',

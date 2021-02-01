@@ -252,7 +252,7 @@ function activeSunAndMoon(action) {
     targets: ['.extend-sun-body', '.extend-moon-body'],
     rotate: {
       value: '+=2turn',
-      duration: 3600,
+      duration: 2000,
       easing: 'easeInOutQuad'
     },
   });
@@ -357,7 +357,7 @@ function activeSunAndMoon(action) {
       //* 黑色幕布上升至视野
       anime({
         targets: '.bg-dark',
-        top: -((globalClient.x / 100) + 20) + 'rem',
+        top: -((globalClient.x / 100) + 10) + 'rem',
         duration: 2000,
         easing: 'easeInOutQuad',
         opacity: 1
